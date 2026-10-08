@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    match /reports/{reportId} {
+      allow read: if signedIn() || (
+        resource.data.published == true &&
+        (
+          !('expiresAt' in resource.data) ||
+          resource.data.expiresAt > request.time
+        )
+      );
+      allow create, delete: if signedIn();
+      allow update: if signedIn() &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        (
+          (!('expiresAt' in resource.data) && !('expiresAt' in request.resource.data)) ||
+          request.resource.data.expiresAt == resource.data.expiresAt
+        );
+    }
+
+    match /{document=**} {
+      allow read, write: if signedIn();
+    }
+  }
+}
