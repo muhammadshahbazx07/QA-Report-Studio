@@ -19,6 +19,20 @@ export const STATUS_COLORS = [
   { key: "blue", label: "Blue", css: "var(--color-blue)" },
   { key: "gray", label: "Gray", css: "var(--color-gray)" },
   { key: "violet", label: "Violet", css: "var(--color-violet)" },
+  { key: "emerald", label: "Emerald", css: "var(--color-emerald)" },
+  { key: "orange", label: "Orange", css: "var(--color-orange)" },
+  { key: "rose", label: "Rose", css: "var(--color-rose)" },
+  { key: "cyan", label: "Cyan", css: "var(--color-cyan)" },
+  { key: "pink", label: "Pink", css: "var(--color-pink)" },
+  { key: "slate", label: "Slate", css: "var(--color-slate)" },
+  { key: "teal", label: "Teal", css: "var(--color-teal)" },
+  { key: "lime", label: "Lime", css: "var(--color-lime)" },
+  { key: "yellow", label: "Yellow", css: "var(--color-yellow)" },
+  { key: "indigo", label: "Indigo", css: "var(--color-indigo)" },
+  { key: "purple", label: "Purple", css: "var(--color-purple)" },
+  { key: "fuchsia", label: "Fuchsia", css: "var(--color-fuchsia)" },
+  { key: "sky", label: "Sky", css: "var(--color-sky)" },
+  { key: "brown", label: "Brown", css: "var(--color-brown)" },
 ];
 
 export const DEFAULT_STATUSES = [

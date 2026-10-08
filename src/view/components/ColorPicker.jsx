@@ -13,6 +13,8 @@ export default function ColorPicker({
             key={c.key}
             type="button"
             title={c.label}
+            aria-label={c.label}
+            aria-pressed={value === c.key}
             onClick={() => onChange(c.key)}
             className={`h-9 w-9 rounded-xl border-4 transition ${value === c.key ? "border-slate-900 scale-110" : "border-white shadow ring-1 ring-slate-200"}`}
             style={{ background: c.css }}
