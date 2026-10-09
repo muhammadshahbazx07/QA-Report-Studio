@@ -29,7 +29,7 @@ export default function ReportPaper({ report, paperRef }) {
       style={{ "--report-accent": accent }}
     >
       <div className="h-2" style={{ background: accent }} />
-      <div className="px-[14mm] py-[13mm]">
+      <div className="px-[clamp(1rem,4vw,14mm)] py-[clamp(1.5rem,4vw,13mm)]">
         <header className="border-b border-slate-200 pb-6">
           <div className="flex items-start justify-between gap-8">
             <div>
@@ -106,28 +106,17 @@ export default function ReportPaper({ report, paperRef }) {
                   return (
                     <div
                       key={field.id}
-                      className={`report-row grid grid-cols-[1fr_190px] gap-4 px-4 py-3 ${idx ? "border-t border-slate-100" : ""}`}
+                      className={`report-row grid grid-cols-[minmax(0,1fr)_minmax(0,40%)] gap-x-4 gap-y-0 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_190px] ${idx ? "border-t border-slate-100" : ""}`}
                     >
-                      <div>
-                        <div className="text-sm font-medium text-slate-800">
+                      <div className="min-w-0">
+                        <div className="break-words text-sm font-medium text-slate-800">
                           {field.label}
                         </div>
-                        {response?.issue && (
-                          <div className="mt-2 rounded-lg border border-red-100 bg-red-50 px-3 py-2">
-                            <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-red-600">
-                              <AlertCircle size={12} />
-                              Issue / Remarks
-                            </div>
-                            <div className="mt-1 text-xs leading-relaxed text-red-800">
-                              {response.issue}
-                            </div>
-                          </div>
-                        )}
                       </div>
-                      <div className="text-right">
+                      <div className="min-w-0 text-right">
                         {field.type === "status" && response ? (
                           <span
-                            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold"
+                            className="inline-flex max-w-full flex-wrap items-center justify-end gap-1.5 break-words rounded-full px-2.5 py-1 text-left text-xs font-bold"
                             style={{
                               color: statusColor(response.colorKey),
                               background: "#ffffff",
@@ -156,6 +145,17 @@ export default function ReportPaper({ report, paperRef }) {
                           </span>
                         )}
                       </div>
+                      {response?.issue && (
+                        <div className="col-span-2 mt-2 min-w-0 rounded-lg border border-red-100 bg-red-50 px-3 py-2 sm:col-span-1">
+                          <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-red-600">
+                            <AlertCircle size={12} />
+                            Issue / Remarks
+                          </div>
+                          <div className="mt-1 break-words text-xs leading-relaxed text-red-800">
+                            {response.issue}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
